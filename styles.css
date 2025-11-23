@@ -104,3 +104,6 @@ label {
 .inputField:last-child{
     margin-bottom: 8px;
 }
+#overallTotals{
+    text-align: center;
+}
