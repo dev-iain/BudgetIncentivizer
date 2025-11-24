@@ -104,3 +104,12 @@ label {
 .inputField:last-child{
     margin-bottom: 8px;
 }
+.task i{
+    visibility:hidden;
+    height:20px;
+    width:20px;
+}
+.task:hover i{
+    visibility:visible;
+    cursor:pointer;
+}
