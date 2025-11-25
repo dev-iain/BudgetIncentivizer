@@ -1,9 +1,9 @@
 
 // data
-let objectives = new Map();
-objectives.set(1, { task:"Log expenses daily", pts: 5 });
+const objectives = new Map();
+/*objectives.set(1, { task:"Log expenses daily", pts: 5 });
 objectives.set(2, { task:"Stay under weekly budget", pts: 50 });
-objectives.set(3, { task:"Have a no-spend day", pts: 20 });
+objectives.set(3, { task:"Have a no-spend day", pts: 20 });*/
 
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
@@ -127,7 +127,7 @@ function addTaskHTML(key, description, points) {
     // append one row
     tableBody.insertAdjacentHTML("beforeend", `
         <tr>
-            <td class="task">${key}</td>
+            <td class="task">${key}<i class="fa-solid fa-trash-can delete-icon"></i></td>
             <td class="description">${description}</td>
             <td class="points">${points}</td>
             ${dayCells}
@@ -147,8 +147,8 @@ function addCheckboxListeners(startIndex) {
     }
 }
 
-//event listeners
 
+// le buttons
 addTaskBtn.addEventListener("click", () => {
     let taskName = document.getElementById("taskName").value;
     let taskPoints = Number(document.getElementById("taskPoints").value);
@@ -162,6 +162,11 @@ addTaskBtn.addEventListener("click", () => {
     document.getElementById("taskPoints").value = "";
 });
 
-deleteDataBtn.addEventListener("click", () => {
-    deleteData();
-})
+tableBody.addEventListener("click", (event) => {
+    if (event.target.classList.contains("delete-icon")) {
+        const row = event.target.closest("tr");
+        row.remove();
+        objectives.delete(row);
+        //console.log(objectives);
+    }
+});
