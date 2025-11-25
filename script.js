@@ -1,6 +1,6 @@
 
 // data
-const objectives = new Map();
+let objectives = new Map();
 /*objectives.set(1, { task:"Log expenses daily", pts: 5 });
 objectives.set(2, { task:"Stay under weekly budget", pts: 50 });
 objectives.set(3, { task:"Have a no-spend day", pts: 20 });*/
