@@ -14,15 +14,12 @@
     <button id="addTask">Add Task</button>
     <label for="taskPoints">  </label>
     <input class = "inputField" type="text" id="taskPoints" placeholder="Points" />
-    <label for="deleteData"></label>
-    <button id="deleteData">Delete Data</button>
 </header>
 
 <table>
     <thead>
     <tr>
         <th>Task</th>
-        <th>Description</th>
         <th>Points</th>
         <th>Monday</th>
         <th>Tuesday</th>
@@ -38,7 +35,7 @@
 
     <tfoot class="days">
     <tr id="dailyTotalsRow">
-        <th colspan="2">Current Total</th>
+        <th colspan="1">Current Total</th>
         <td id="currTotals">0</td>
         <td id="dayTotal-0">0</td>
         <td id="dayTotal-1">0</td>
@@ -50,7 +47,7 @@
     </tr>
 
     <tr id="overallTotals">
-        <th colspan="2">Total Points</th>
+        <th colspan="1">Total Points</th>
         <td id="totalPoints"><span id="totalPointsSum">0</span></td>
         <td colspan="7" id="completedPoints">
             Completed: <span id="completedPointsSum">0</span>
@@ -61,6 +58,7 @@
 <label for="completion">Task Progress:</label>
 <progress id="completion" max="1" value="0">0</progress>
 
-<script src="script.js"></script>
+<script type="module" src="js/main.js"></script>
+
 </body>
 </html>
