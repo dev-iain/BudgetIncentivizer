@@ -1,13 +1,13 @@
-import { loadData } from "./data.js";
-import { renderTasks } from "./render.js";
-import { addCheckboxListeners } from "./events.js";
-import { handleCheckboxChange } from "./ui.js";
+import { Data } from "./data/data.js";
+import { Renderer } from "./ui/render.js";
+import { addCheckboxListeners } from "./events/events.js";
+import { UI } from "./ui/ui.js";
 
 function startup() {
-    loadData();
-    renderTasks();
+    Data.loadData();
+    Renderer.renderTasks();
     addCheckboxListeners();
-    handleCheckboxChange();
+    UI.handleCheckboxChange();
 }
 
 startup();

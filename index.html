@@ -11,12 +11,18 @@
             <h1>Objectives</h1>
             <label for="taskName">  </label>
             <input class = "inputField" type="text" id="taskName" placeholder="Task Name" />
-            <button id="addTask">Add Task</button>
             <label for="taskPoints">  </label>
             <input class = "inputField" type="text" id="taskPoints" placeholder="Points" />
+            <label for="taskType"></label>
+            <select id="taskType">
+                <option value="Daily">Daily</option>
+                <option value="Weekly">Weekly</option>
+            </select>
+            <button id="addTask">Add Task</button>
         </header>
 
-        <table>
+        <table id = "dailyTable">
+            <caption class = "tableNames">Daily Tasks</caption>
             <thead>
                 <tr>
                     <th>Task</th>
@@ -31,7 +37,7 @@
                 </tr>
             </thead>
 
-            <tbody id="taskTable"></tbody>
+            <tbody id="dailyTaskTable"></tbody>
 
             <tfoot class="days">
                 <tr id="dailyTotalsRow">
@@ -55,8 +61,34 @@
                 </tr>
             </tfoot>
         </table>
-        <label for="completion">Task Progress:</label>
-        <progress id="completion" max="1" value="0">0</progress>
+
+        <label for="dailyCompletion">Task Progress:</label>
+        <progress id="dailyCompletion" max="1" value="0">0</progress>
+
+        <table id = "weeklyTable">
+            <caption>Weekly Tasks</caption>
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>Points</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tfoot class = "weeklyPoints">
+                    <tr id = "currentWeeklyTotal">
+                        <th colspan = "1">Current Overall</th>
+                        <td id = "currentWeeklyPoints">0</td>
+
+                    </tr>
+                    <tr id = "overallWeeklyTotal">
+                        <th colspan="1">Total Overall</th>
+                        <td id="totalWeeklyPoints">0</td>
+                    </tr>
+
+                </tfoot>
+            <tbody id="weeklyTaskTable"></tbody>
+        </table>
+
         <header>
             <h1>Stats</h1>
 
