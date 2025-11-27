@@ -1,4 +1,4 @@
-import { days, daily_tasks } from "../data/data.js";
+import { days} from "../data/data.js";
 import { Calc } from "./calc.js";
 
 function calcBestDay() {

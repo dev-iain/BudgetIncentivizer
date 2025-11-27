@@ -1,20 +1,19 @@
 import { Dom, typeTaskDropdown } from "./dom.js";
-import { handleCheckboxChange } from "../ui/ui.js"; // ✅ use only this directly
+import { handleCheckboxChange } from "../ui/ui.js";
 import { Renderer, renderTasks, renderWeeklyTasks } from "../ui/render.js";
-import { daily_tasks, saveData, weekly_tasks } from "../data/data.js"; // ✅ ensure we read/write same stores
+import { daily_tasks, saveData, weekly_tasks } from "../data/data.js";
 import { Statistics } from "../calculations/stats.js";
 
 export function addCheckboxListeners() {
-    // ✅ Guard daily table
+
     if (Dom.dailyTableBody) {
         Dom.dailyTableBody.addEventListener("change", (e) => {
             if (e.target.matches("input[type='checkbox']")) {
-                handleCheckboxChange(e); // ✅ pass real event context
+                handleCheckboxChange(e);
             }
         });
     }
 
-    // ✅ Guard weekly table
     if (Dom.weeklyTableBody) {
         Dom.weeklyTableBody.addEventListener("change", (e) => {
             if (e.target.matches("input[type='checkbox']")) {
@@ -34,19 +33,25 @@ if (Dom.addTaskBtn) {
 
 if (Dom.dailyTableBody) {
     Dom.dailyTableBody.addEventListener("click", (event) => {
-        if (event.target.classList.contains("delete-icon")) {
-            const row = event.target.closest("tr");
-            const id = row.dataset.id;
-            const taskType = getTaskType(id);
-            deleteTask(id, taskType);
-
-            saveData();
-            renderTasks();
-            handleCheckboxChange(); // ✅ run after DOM is stable
-        }
+        deleteTaskHelper(event);
+    });
+    Dom.weeklyTableBody.addEventListener("click", (event) => {
+        deleteTaskHelper(event);
     });
 }
 
+
+function deleteTaskHelper(event){
+    if (event.target.classList.contains("delete-icon")) {
+        const row = event.target.closest("tr");
+        const id = row.dataset.id;
+        const taskType = getTaskType(id);
+        deleteTask(id, taskType);
+        saveData();
+        renderTasks();
+        handleCheckboxChange();
+    }
+}
 if (Dom.calculateStatsBtn) {
     Dom.calculateStatsBtn.addEventListener("click", () => {
         const { bestDay, bestDayPts } = Statistics.calcBestDay();
