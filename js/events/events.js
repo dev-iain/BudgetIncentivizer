@@ -1,20 +1,24 @@
-import {Dom, typeTaskDropdown} from "./dom.js";
+import {Dom as Daily, Dom, typeTaskDropdown} from "./dom.js";
 import {handleCheckboxChange, UI} from "../ui/ui.js";
 import {Renderer, renderTasks, renderWeeklyTasks} from "../ui/render.js";
 import {daily_tasks, Data, saveData, weekly_tasks} from "../data/data.js";
 import { Statistics } from "../calculations/stats.js";
 
 export function addCheckboxListeners() {
-    Dom.dailyTableBody.addEventListener("change", (e) => {
-        if (e.target.matches("input[type='checkbox']")) {
-            UI.handleCheckboxChange();
-        }
-    });
-    Dom.weeklyTableBody.addEventListener("change", (e) => {
-        if (e.target.matches("input[type='checkbox']")) {
-            UI.handleCheckboxChange();
-        }
-    })
+    if(Dom.dailyTableBody) {
+        Dom.dailyTableBody.addEventListener("change", (e) => {
+            if (e.target.matches("input[type='checkbox']")) {
+                UI.handleCheckboxChange();
+            }
+        });
+    }
+    if(Daily.weeklyTableBody) {
+        Dom.weeklyTableBody.addEventListener("change", (e) => {
+            if (e.target.matches("input[type='checkbox']")) {
+                UI.handleCheckboxChange();
+            }
+        })
+    }
 }
 
 // le buttons
