@@ -2,24 +2,15 @@ import { Dom, typeTaskDropdown } from "./dom.js";
 import { handleCheckboxChange } from "../ui/ui.js";
 import { Renderer, renderTasks, renderWeeklyTasks } from "../ui/render.js";
 import { daily_tasks, saveData, weekly_tasks } from "../data/data.js";
-import { Statistics } from "../calculations/stats.js";
 
 export function addCheckboxListeners() {
 
-    if (Dom.dailyTableBody) {
-        Dom.dailyTableBody.addEventListener("change", (e) => {
-            if (e.target.matches("input[type='checkbox']")) {
-                handleCheckboxChange(e);
-            }
-        });
-    }
-
-    if (Dom.weeklyTableBody) {
-        Dom.weeklyTableBody.addEventListener("change", (e) => {
-            if (e.target.matches("input[type='checkbox']")) {
-                handleCheckboxChange(e);
-            }
-        });
+    addCheckboxListenersHelper(Dom.dailyTableBody);
+    addCheckboxListenersHelper(Dom.weeklyTableBody);
+}
+export function addCheckboxListenersHelper(elem) {
+    for (const checkbox of elem.querySelectorAll("input[type='checkbox']")) {
+        checkbox.addEventListener("change", handleCheckboxChange);
     }
 }
 
@@ -31,17 +22,7 @@ if (Dom.addTaskBtn) {
     });
 }
 
-if (Dom.dailyTableBody) {
-    Dom.dailyTableBody.addEventListener("click", (event) => {
-        deleteTaskHelper(event);
-    });
-    Dom.weeklyTableBody.addEventListener("click", (event) => {
-        deleteTaskHelper(event);
-    });
-}
-
-
-function deleteTaskHelper(event){
+export function deleteTaskHelper(event){
     if (event.target.classList.contains("delete-icon")) {
         const row = event.target.closest("tr");
         const id = row.dataset.id;
@@ -52,52 +33,36 @@ function deleteTaskHelper(event){
         handleCheckboxChange();
     }
 }
-if (Dom.calculateStatsBtn) {
-    Dom.calculateStatsBtn.addEventListener("click", () => {
-        const { bestDay, bestDayPts } = Statistics.calcBestDay();
-        document.getElementById("bestDay").textContent = bestDay;
-        document.getElementById("bestPoints").textContent = bestDayPts;
-    });
-}
 
-document.getElementById("addWeeklyTask")?.addEventListener("click", () => {
-    let taskName = document.getElementById("weeklyTaskName").value;
-    let taskPoints = Number(document.getElementById("weeklyTaskPoints").value);
-    const id = crypto.randomUUID();
 
-    weekly_tasks.set(id, { task: taskName, pts: taskPoints });
-    renderWeeklyTasks(weekly_tasks);
-    handleCheckboxChange();
-
-    document.getElementById("weeklyTaskName").value = "";
-    document.getElementById("weeklyTaskPoints").value = "";
-});
-
-function addTask(type) {
+export function addTask(type) {
     let taskName = document.getElementById("taskName").value;
     let taskPoints = Number(document.getElementById("taskPoints").value);
     const id = crypto.randomUUID();
 
     if (type === "daily") {
-        daily_tasks.set(id, { task: taskName, pts: taskPoints, type });
+        daily_tasks.set(id, {task: taskName, pts: taskPoints, type});
         Renderer.addTaskHTML(id, taskName, taskPoints);
+
     } else if (type === "weekly") {
-        weekly_tasks.set(id, { task: taskName, pts: taskPoints, type });
+        weekly_tasks.set(id, {task: taskName, pts: taskPoints, type});
         Renderer.renderWeeklyTasks(weekly_tasks);
     }
-
+    addCheckboxListeners();
     saveData();
+    document.getElementById("taskName").value = "";
+    document.getElementById("taskPoints").value = "";
 }
 
-function deleteTask(id, type) {
+export function deleteTask(id, type) {
     type === "daily" ? daily_tasks.delete(id) : weekly_tasks.delete(id);
 }
 
-function getDropdownType() {
+export function getDropdownType() {
     return typeTaskDropdown?.value === "Daily" ? "daily" : "weekly";
 }
 
-function getTaskType(id) {
+export function getTaskType(id) {
     const daily = daily_tasks.get(id);
     const weekly = weekly_tasks.get(id);
 

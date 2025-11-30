@@ -12,7 +12,7 @@ export const Calc = {
         }
         return total;
     },
-
+    
     possibleDailyPoints: () => sumPoints(daily_tasks) * days.length,
     dailyCompletion: () => Daily.weeklyDailyCompletionPercentage(daily_tasks),
 

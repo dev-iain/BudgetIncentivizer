@@ -21,9 +21,9 @@ export function handleCheckboxChange() {
     document.getElementById("dailyCompletion").value = isFinite(weeklyPercent) ? weeklyPercent : 0;
     document.getElementById("completedPointsSum").textContent =
         (weeklyPercent * 100).toFixed(0) + "%";
-
-    document.getElementById("totalPointsSum").textContent = Calc.possibleDailyPoints();
-    document.getElementById("currTotals").textContent = Calc.currentDailyPoints();
+    possiblePoints();
+    // document.getElementById("totalPointsSum").textContent = Calc.possibleDailyPoints();
+    // document.getElementById("currTotals").textContent = Calc.currentDailyPoints();
     document.getElementById("currentWeeklyPoints").textContent = Calc.currentWeeklyPoints();
     document.getElementById("totalWeeklyPoints").textContent = Calc.possibleWeeklyPoints();
 }
@@ -31,3 +31,10 @@ export function handleCheckboxChange() {
 export const UI = {
     handleCheckboxChange
 };
+function dailyTasks(){
+
+}
+function possiblePoints(){
+    $("#totalPointsSum").textContent = Calc.possibleDailyPoints();
+    $("#totalWeeklyPoints").textContent = Calc.possibleWeeklyPoints();
+}
