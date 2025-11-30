@@ -1,6 +1,5 @@
-import { days } from "../data/data.js";
-import { sumPoints } from "./points.js";
-import { sumCheckboxes, completionPercentage} from "./calc.js";
+import {sumCheckboxes, completionPercentage, sumPoints} from "./calc.js";
+import {daily_tasks, days} from "../data/data.js";
 
 export function sumDay(taskMap, dayIndex) {
     return sumCheckboxes(
@@ -9,14 +8,17 @@ export function sumDay(taskMap, dayIndex) {
     );
 }
 
-
-export function totalPossibleDailyPoints(taskMap) {
-    return sumPoints(taskMap) * days.length;
-}
-
-export function currentDailyPoints(taskMap) {
-    return sumPoints(taskMap);
-}
 export function dailyTaskCompletionPercentage(taskMap, completedPoints) {
     return (completionPercentage(taskMap, completedPoints))/7;
+}
+export function possibleDailyPoints(){
+    return sumPoints(daily_tasks) * 7;
+}
+
+export function currentDailyPoints(){
+    let total = 0;
+    for (let i = 0; i < days.length; i++) {
+        total += sumDay(daily_tasks, i);
+    }
+    return total;
 }
