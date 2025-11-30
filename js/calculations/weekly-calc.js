@@ -1,4 +1,5 @@
 import { sumPoints } from "./points.js";
+import {sumCheckboxes} from "./calc.js";
 
 export function currentWeeklyPoints(taskMap) {
     return sumPoints(taskMap);
@@ -14,14 +15,5 @@ export function weeklyCompletionPercentage(taskMap, completedPoints) {
     return completedPoints / possible;
 }
 export function sumWeek(taskMap) {
-    let sum = 0;
-    taskMap.forEach((value, id) => {
-        const checkbox = document.querySelector(
-            `input[data-task="${id}"]`
-        );
-        if (checkbox?.checked) {
-            sum += value.pts;
-        }
-    });
-    return sum;
+    return sumCheckboxes(taskMap, id => `input[data-task="${id}"]`);
 }

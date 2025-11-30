@@ -3,6 +3,8 @@ import * as Daily from "./daily-calc.js";
 import * as Weekly from "./weekly-calc.js";
 import { sumPoints } from "./points.js";
 
+
+
 export const Calc = {
     sumDay: i => Daily.sumDay(daily_tasks, i),
     currentDailyPoints: () => {
@@ -26,4 +28,15 @@ export const Calc = {
     ),
 
     combinedPoints: () => sumPoints(daily_tasks) + sumPoints(weekly_tasks)
+
 };
+export function sumCheckboxes(taskMap, selectors) {
+    let sum = 0;
+    taskMap.forEach((value, id) => {
+        const checkbox = document.querySelector(selectors(id));
+        if (checkbox?.checked) {
+            sum += value.pts;
+        }
+    });
+    return sum;
+}

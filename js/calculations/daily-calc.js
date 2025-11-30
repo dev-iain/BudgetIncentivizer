@@ -1,18 +1,14 @@
 import { days } from "../data/data.js";
 import { sumPoints } from "./points.js";
+import { sumCheckboxes} from "./calc.js";
 
 export function sumDay(taskMap, dayIndex) {
-    let sum = 0;
-    taskMap.forEach((value, id) => {
-        const checkbox = document.querySelector(
-            `input[data-task="${id}"][data-day="${dayIndex}"]`
-        );
-        if (checkbox?.checked) {
-            sum += value.pts;
-        }
-    });
-    return sum;
+    return sumCheckboxes(
+        taskMap,
+        id => `input[data-task="${id}"][data-day="${dayIndex}"]`
+    );
 }
+
 
 export function totalPossibleDailyPoints(taskMap) {
     return sumPoints(taskMap) * days.length;
