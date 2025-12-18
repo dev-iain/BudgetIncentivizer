@@ -9,6 +9,7 @@ export const weekly_tasks = new Map([]);
 export const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 export const dailyTasksStatus = new Map();
+export const weeklyTasksStatus = new Map();
 
 export function saveDailyTaskStatus() {
     dailyTasksStatus.clear();
@@ -24,6 +25,15 @@ export function saveDailyTaskStatus() {
     return dailyTasksStatus;
 }
 
+export function saveWeeklyTaskStatus(){
+    weeklyTasksStatus.clear();
+    Data.weekly_tasks.forEach((value, id) => {
+        const checkbox = $(`input[data-task='${id}']`);
+        let taskStatus = checkbox.is(":checked");
+        weeklyTasksStatus.set(id, { status: taskStatus });
+    });
+    return weeklyTasksStatus;
+}
 
 function saveMap(key, map) {
     localStorage.setItem(key, JSON.stringify([...map]));
@@ -45,8 +55,10 @@ export function saveData() {
     saveMap("dailyTasks", daily_tasks);
     saveMap("weeklyTasks", weekly_tasks);
 
-    const status = saveDailyTaskStatus();
-    saveMap("dailyTasksStatus", status);
+    const dailyStatus = saveDailyTaskStatus();
+    const weeklyStatus = saveWeeklyTaskStatus();
+    saveMap("dailyTasksStatus", dailyStatus);
+    saveMap("weeklyTasksStatus", weeklyStatus);
 }
 
 
@@ -54,6 +66,7 @@ export function loadData() {
     loadMap("dailyTasks", daily_tasks);
     loadMap("weeklyTasks", weekly_tasks);
     loadMap("dailyTasksStatus", dailyTasksStatus);
+    loadMap("weeklyTasksStatus", weeklyTasksStatus);
 }
 
 export const Data = {
@@ -63,5 +76,6 @@ export const Data = {
     saveData,
     loadData,
     saveDailyTaskStatus,
-    dailyTasksStatus
+    dailyTasksStatus,
+    weeklyTasksStatus
 };

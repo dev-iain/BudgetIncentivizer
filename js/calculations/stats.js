@@ -1,6 +1,6 @@
 import {daily_tasks, days} from "../data/data.js";
-import { Calc} from "./calc.js";
-import {sumDay} from "./daily-calc"
+import {sumDay} from "./daily-calc.js"
+
 function calcBestDay() {
     let bestDay = null;
     let bestDayPts = -Infinity;

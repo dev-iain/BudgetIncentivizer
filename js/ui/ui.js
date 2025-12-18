@@ -1,4 +1,4 @@
-import {daily_tasks, days, weekly_tasks, saveDailyTaskStatus, saveData} from "../data/data.js";
+import {daily_tasks, days, weekly_tasks, saveDailyTaskStatus, saveData, saveWeeklyTaskStatus} from "../data/data.js";
 import {sumPoints} from "../calculations/calc.js";
 import {dailyTaskCompletionPercentage} from "../calculations/daily-calc.js";
 import {sumWeek} from "../calculations/weekly-calc.js";
@@ -10,6 +10,7 @@ export function handleCheckboxChange() {
     possiblePoints();
     currentPoints();
     saveDailyTaskStatus();
+    saveWeeklyTaskStatus();
     saveData();
 }
 
