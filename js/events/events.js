@@ -53,6 +53,7 @@ export function addTask(type) {
     }
     addCheckboxListeners();
     saveData();
+    handleCheckboxChange();
     taskNameInput.val("");
     taskPointsInput.val("");
 }

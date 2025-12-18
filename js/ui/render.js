@@ -1,11 +1,9 @@
 import { Data } from "../data/data.js";
-import {Dom, weeklyTableBody} from "../events/dom.js";
+import {Dom} from "../events/dom.js";
 
 export function renderTasks() {
-    Dom.dailyTableBody.innerHTML = ""; // clear before rendering
-    Data.daily_tasks.forEach((value, id) => {
-        addTaskHTML(id, value.task, value.pts);
-    });
+    $("#dailyTaskTable").html(""); // clear before rendering
+    renderDailyTasks();
     renderWeeklyTasks();
     loadTaskStatus();
 }
@@ -33,6 +31,11 @@ function addTaskHTML(id, description, points) {
         </tr>
     `);
 }
+function renderDailyTasks(){
+    Data.daily_tasks.forEach((value, id) => {
+        addTaskHTML(id, value.task, value.pts);
+    });
+}
 function loadTaskStatus() {
     Data.dailyTasksStatus.forEach((value, id) => {
         value.days.forEach((isChecked, dayIndex) => {
@@ -43,9 +46,7 @@ function loadTaskStatus() {
 }
 
 export function renderWeeklyTasks() {
-    if (!weeklyTableBody) return;
-
-    weeklyTableBody.innerHTML = "";
+    $("#weeklyTaskTable").html("");
 
     Data.weekly_tasks.forEach((value, id) => {
         addWeeklyTaskRow(id, value.task, value.pts);
@@ -65,7 +66,7 @@ function addWeeklyTaskRow(id, description, points) {
             </td>
         </tr>
     `;
-    weeklyTableBody.insertAdjacentHTML("beforeend", html);
+    $("#weeklyTaskTable").append(html);
 }
 
 export const Renderer= {
