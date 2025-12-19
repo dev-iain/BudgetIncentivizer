@@ -1,5 +1,6 @@
-import {daily_tasks, days} from "../data/data.js";
+
 import {sumDay} from "./daily-calc.js"
+import {daily_tasks, days} from "../data/dailytasks.js";
 
 function calcBestDay() {
     let bestDay = null;

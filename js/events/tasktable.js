@@ -1,7 +1,9 @@
 import {addCheckboxListeners} from "./events.js";
-import {daily_tasks, saveData, weekly_tasks} from "../data/data.js";
+import {saveData} from "../data/data.js";
 import {Renderer, renderTasks} from "../ui/render.js";
 import {handleCheckboxChange} from "../ui/ui.js";
+import {daily_tasks} from "../data/dailytasks.js";
+import {weekly_tasks} from "../data/weeklytasks.js";
 
 addCheckboxListeners();
 $("#dailyTaskTable, #weeklyTaskTable").on("click", function (event) {

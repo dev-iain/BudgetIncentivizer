@@ -1,8 +1,10 @@
-import {daily_tasks, days, weekly_tasks, saveDailyTaskStatus, saveData, saveWeeklyTaskStatus} from "../data/data.js";
-import {sumPoints} from "../calculations/calc.js";
-import {dailyTaskCompletionPercentage} from "../calculations/daily-calc.js";
+import {saveData} from "../data/data.js";
+import {completionPercentage, sumPoints} from "../calculations/calc.js";
 import {sumWeek} from "../calculations/weekly-calc.js";
 import {possibleDailyPoints, sumDay, currentDailyPoints} from "../calculations/daily-calc.js";
+import {getFullDate} from "../data/date.js";
+import {daily_tasks, days, saveDailyTaskStatus} from "../data/dailytasks.js";
+import {saveWeeklyTaskStatus, weekly_tasks} from "../data/weeklytasks.js";
 
 export function handleCheckboxChange() {
     dailyTotal();
@@ -11,6 +13,7 @@ export function handleCheckboxChange() {
     currentPoints();
     saveDailyTaskStatus();
     saveWeeklyTaskStatus();
+    setDate();
     saveData();
 }
 
@@ -30,13 +33,15 @@ function currentPoints(){
 }
 
 function taskCompletion() {
-    let dailyCompletion = dailyTaskCompletionPercentage(daily_tasks, currentDailyPoints());
+    let dailyCompletion = completionPercentage(daily_tasks, currentDailyPoints(), "daily");
     if(!isFinite(dailyCompletion)) dailyCompletion = 0;
     $("#dailyCompletion").val(dailyCompletion);
     const completedPointsSum = (dailyCompletion * 100).toFixed(0) + "%";
     $("#completedPointsSum").text(completedPointsSum);
 }
-
+function setDate(){
+    $("#currentDate").text(getFullDate());
+}
 function dailyTotal(){
     days.forEach((_, i) => {
         $("#dayTotal-"+i).text(sumDay(daily_tasks, i));

@@ -15,10 +15,11 @@ export function sumCheckboxes(taskMap, selectors) {
     return sum;
 }
 
-export function completionPercentage(taskMap, completedPoints) {
+export function completionPercentage(taskMap, completedPoints, type) {
     const possible = sumPoints(taskMap);
     if (!possible) return 0;
-    return completedPoints / possible;
+    const percentage = completedPoints/possible;
+    return (type === "daily") ? percentage/7 : percentage;
 }
 
 export function sumPoints(taskMap) {
