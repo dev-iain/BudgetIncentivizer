@@ -1,51 +1,48 @@
 import {daily_tasks} from "./dailytasks.js";
+import {currentDailyPoints} from "../calculations/daily-calc.js";
 
-const taskHistory = {
-    week: {
-        types: {
-            daily: {
-                tasks: {},
-                days: {}
-            },
-            weekly: {
-                tasks: {},
-            }
+function populateTasks(type, map){
+    const totals = new Map();
+    map.forEach((value, id) => {
+        let total = 0;
+        for (let i = 0; i < 7; i++) {
+            if(value.completed[i]) total +=1;
         }
-    }
-};
-
-function addTaskHistory(date, dailyMap, weeklyMap){
-    taskHistory.set(date, {daily: dailyMap, weekly: weeklyMap});
+        totals.set(id, total);
+    });
+    return totals;
 }
-// structure for history should be something like (week,
+// could use a second param like length so it works for weekly (populateDays(map, length){}
+function populateDays(map){
+    const daysTotal = new Map();
+    for(let i = 0; i < 7; i++){
+        let dayTotal = 0;
+        map.forEach((value) => {
+            if(value.completed[i]) {
+                dayTotal += 1;
+            }
+        });
+        daysTotal.set(i, dayTotal);
+    }
+    return daysTotal;
+}
 
-// function populateTaskHistory(date, dailyMap){}
-// export function populateTotals(type, map){
-//     const totals = new Map();
-//     map.forEach((value, id) => {
-//         let total = 0;
-//         for (let i = 0; i < 7; i++) {
-//             if(value.days[i]) total +=1;
-//         }
-//         totals.set(id, total);
-//         console.log(totals);
-//     });
-// }
-
-/*
-pseudocode
-for each task in taskmap:
-    daily task status -> task status
-
-*/
+function sumTasks(taskMap){
+    let completedTotal = 0;
+    taskMap.forEach((value) =>{
+        completedTotal += value;
+    });
+    console.log(completedTotal);
+    return completedTotal;
+}
 
 function createWeekSnapshot(week){
     return {
         week,
         types: {
             daily: {
-                tasks: new Map(),
-                days: new Map(),
+                tasks: populateTasks("daily", daily_tasks),
+                days: populateDays(daily_tasks),
                 totals: {
                     completedTasks: 0,
                     unfinishedTasks: 0,
@@ -62,4 +59,24 @@ function createWeekSnapshot(week){
             }
         }
     }
+}
+
+export function buildTaskHistory() {
+    const dailyTasks = populateTasks("daily", daily_tasks);
+    const dayTotals = populateDays(daily_tasks);
+    const taskTotals = sumTasks(dailyTasks);
+    const totals = new Map([["daily", {completedTasks: taskTotals, unfinishedTasks: 21 - taskTotals, completedPoints: currentDailyPoints()}]]
+    );
+
+    return {
+        week: {
+            types: {
+                daily: {
+                    tasks: dailyTasks,
+                    days: dayTotals,
+                    totals: totals
+                }
+            }
+        }
+    };
 }

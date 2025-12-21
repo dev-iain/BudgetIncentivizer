@@ -1,0 +1,43 @@
+[
+  { "task": "Log expenses daily", "pts": 5, "type": "daily", "completed": [] },
+  { "task": "Review spending categories", "pts": 10, "type": "daily", "completed": [] },
+  { "task": "Check bank balances", "pts": 5, "type": "daily", "completed": [] },
+  { "task": "Avoid impulse purchases", "pts": 15, "type": "daily", "completed": [] },
+  { "task": "Track cash spending", "pts": 10, "type": "daily", "completed": [] },
+
+  { "task": "Stay under weekly budget", "pts": 50, "type": "daily", "completed": [] },
+  { "task": "Have a no-spend day", "pts": 20, "type": "daily", "completed": [] },
+  { "task": "Cook meals at home", "pts": 15, "type": "daily", "completed": [] },
+  { "task": "Skip food delivery apps", "pts": 20, "type": "daily", "completed": [] },
+  { "task": "Pack lunch instead of eating out", "pts": 15, "type": "daily", "completed": [] },
+
+  { "task": "Review subscriptions", "pts": 10, "type": "daily", "completed": [] },
+  { "task": "Cancel unused subscriptions", "pts": 25, "type": "daily", "completed": [] },
+  { "task": "Compare prices before buying", "pts": 10, "type": "daily", "completed": [] },
+  { "task": "Use coupons or discounts", "pts": 10, "type": "daily", "completed": [] },
+  { "task": "Avoid convenience store purchases", "pts": 10, "type": "daily", "completed": [] },
+
+  { "task": "Check credit card transactions", "pts": 10, "type": "daily", "completed": [] },
+  { "task": "Pay down credit card balance", "pts": 30, "type": "daily", "completed": [] },
+  { "task": "Review savings goals", "pts": 15, "type": "daily", "completed": [] },
+  { "task": "Transfer money to savings", "pts": 25, "type": "daily", "completed": [] },
+  { "task": "Avoid overdraft fees", "pts": 20, "type": "daily", "completed": [] },
+
+  { "task": "Plan tomorrow’s spending", "pts": 10, "type": "daily", "completed": [] },
+  { "task": "Reflect on today’s purchases", "pts": 5, "type": "daily", "completed": [] },
+  { "task": "Set a spending limit for the day", "pts": 10, "type": "daily", "completed": [] },
+  { "task": "Avoid online shopping", "pts": 20, "type": "daily", "completed": [] },
+  { "task": "Review financial goals", "pts": 15, "type": "daily", "completed": [] },
+
+  { "task": "Check upcoming bills", "pts": 10, "type": "daily", "completed": [] },
+  { "task": "Set aside money for bills", "pts": 20, "type": "daily", "completed": [] },
+  { "task": "Avoid late fees", "pts": 25, "type": "daily", "completed": [] },
+  { "task": "Monitor utility usage", "pts": 10, "type": "daily", "completed": [] },
+  { "task": "Reduce unnecessary expenses", "pts": 15, "type": "daily", "completed": [] },
+
+  { "task": "Review financial apps", "pts": 5, "type": "daily", "completed": [] },
+  { "task": "Organize receipts", "pts": 10, "type": "daily", "completed": [] },
+  { "task": "Update expense categories", "pts": 10, "type": "daily", "completed": [] },
+  { "task": "Review daily spending summary", "pts": 5, "type": "daily", "completed": [] },
+  { "task": "End the day within budget", "pts": 30, "type": "daily", "completed": [] }
+]
