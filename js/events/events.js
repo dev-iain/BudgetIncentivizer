@@ -14,7 +14,8 @@ export function addCheckboxListenersHelper(elem) {
         .on("change", handleCheckboxChange);
 }
 
-$("#addTask").on("click", function () {
+$("#taskForm").on("submit", function (event) {
+    event.preventDefault();
     let type = getDropdownType();
     addTask(type);
 });
