@@ -1,5 +1,5 @@
 import {daily_tasks, days} from "../data/dailytasks.js";
-import {weekly_tasks, weeklyTasksStatus} from "../data/weeklytasks.js";
+import {weekly_tasks} from "../data/weeklytasks.js";
 import {handleCheckboxChange} from "./ui.js";
 import {addCheckboxListeners} from "../events/events.js";
 export function renderTasks() {
@@ -58,7 +58,7 @@ function loadDailyTaskStatus() {
 }
 
 function loadWeeklyTaskStatus() {
-    weeklyTasksStatus.forEach((value, id) => {
+    weekly_tasks.forEach((value, id) => {
         const checkbox = $(`input[data-task='${id}']`);
         checkbox.prop("checked", value.status);
     });

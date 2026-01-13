@@ -1,5 +1,6 @@
 import {setDailyTasks} from "./dailytasks.js";
 import {refreshTable} from "../ui/render.js";
+import {setWeeklyTasks} from "./weeklytasks.js";
 const userFile = $("#userFile");
 
 userFile.on("change", function () {
@@ -11,10 +12,10 @@ function loadFiles(files) {
     const file = files[0];
     file.text().then(text => {
         const data = JSON.parse(text);
-        console.log(data);
-        const userMap = new Map(data.map((file, i) => [`test-${i}`, file]));
-        console.log(userMap);
-        setDailyTasks(userMap);
+        const dailyData = data.find(d => d.type === "daily");
+        const weeklyData = data.find(d => d.type === "weekly");
+        setDailyTasks(new Map(dailyData.tasks));
+        setWeeklyTasks(new Map(weeklyData.tasks));
         refreshTable();
     });
 }

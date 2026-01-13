@@ -8,13 +8,15 @@ import "./events/stats.js"
 import "./data/history.js"
 import "./data/jsonloading.js"
 import {buildTaskHistory} from "./data/history.js";
+import {downloadData} from "./data/jsonsaving.js";
+
 function startup() {
     Data.loadData();
     refreshWeek();
     Renderer.renderTasks();
     addCheckboxListeners();
     UI.handleCheckboxChange();
-    console.log(buildTaskHistory());
+    buildTaskHistory();
 }
 
 startup();
