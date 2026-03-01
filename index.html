@@ -24,7 +24,7 @@
                 </select>
                 <button id="addTask">Add Task</button>
                 <label for = "userFile"></label>
-                <input id="userFile" type="file" accept = ".json" autocomplete="off"/>
+                <input id="userFile" type="file" accept = ".json" autocomplete="off" />
                 <label for ="saveFile"></label>
                 <a id = "downloadFile" download="userfile.json"></a>
                 <input id="saveFile" type="button" value = "Download">
@@ -101,10 +101,9 @@
         <header>
             <h1>Stats</h1>
 
-            <label for="calculateStats">Calculate Stats</label>
-            <input type="button" id="calculateStats" value="Calculate" />
-
         </header>
+        <label id = calculateStatsLabel for="calculateStats">Calculate Stats</label>
+        <input type="button" id="calculateStats" value="Calculate" />
         <table id="statsTable">
             <thead>
             <tr>
